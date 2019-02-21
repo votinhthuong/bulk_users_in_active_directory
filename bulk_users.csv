@@ -1,0 +1,4 @@
+firstname,middleInitial,lastname,username,email,streetaddress,city,zipcode,country,department,password,jobtitle,company,ou
+Nguyen Van,,Nam,namnv,namnv@votinhthuong.tech,Tran Hung Dao,HCM,700000,Vietnam,IT Dept,9Gc%7Za#7Lg%1Lg(,System Engineer,VO TINH THUONG TECH,"OU=IT Dept,DC=votinhthuong,DC=tech"
+Tran Thu,,Duc,ductt,ductt@votinhthuong.tech,Tran Hung Dao,HCM,700000,Vietnam,IT Dept,"3Jo(8Dq%2Jl&8Us""",System Engineer,VO TINH THUONG TECH,"OU=IT Dept,DC=votinhthuong,DC=tech"
+Le Van,,Cuong,cuonglv,cuonglv@votinhthuong.tech,Tran Hung Dao,HCM,700000,Vietnam,HR Dept,6Sj'5Sp*6Ng)2Fy&,Sale Assistant,VO TINH THUONG TECH,"OU=HR Dept,DC=votinhthuong,DC=tech"
