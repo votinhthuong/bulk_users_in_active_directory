@@ -1,9 +1,13 @@
 # Import active directory module for running AD cmdlets
 Import-Module activedirectory
-  
+
 #Store the data from ADUsers.csv in the $ADUsers variable
-#Change path
 $ADUsers = Import-csv C:\bulk_users1.csv
+
+$Domain = Get-ADDomain 
+$dc1 = $Domain.DNSRoot.split('.')[0]
+$dc2 = $Domain.DNSRoot.split('.')[1]
+
 
 #Loop through each row containing user details in the CSV file 
 foreach ($User in $ADUsers)
@@ -24,7 +28,8 @@ foreach ($User in $ADUsers)
     $company    = $User.company
     $department = $User.department
 
-
+    $ou=$User.ou
+    
 	#Check to see if the user already exists in AD
 	if (Get-ADUser -F {SamAccountName -eq $Username})
 	{
@@ -33,13 +38,21 @@ foreach ($User in $ADUsers)
 	}
 	else
 	{
+        
+        if("LDAP://OU=$ou,DC=$dc1,DC=$dc2")
+        {
+            Write-Warning "A Organization Unit with name $ou already exist in Active Directory."
+        }
+        else
+        {       
+            New-ADOrganizationalUnit -Name $ou -Path "DC=$dc1,DC=$dc2" 
+        }
 		#User does not exist then proceed to create the new user account
 		
         #Account will be created in the OU provided by the $OU variable read from the CSV file
 		New-ADUser `
             -SamAccountName $Username `
-            #Change domain
-            -UserPrincipalName "$Username@abc.com" `
+            -UserPrincipalName "$Username@votinhthuong.tech" `
             -Name "$Firstname $Lastname" `
             -GivenName $Firstname `
             -Surname $Lastname `
